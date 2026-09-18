@@ -2,7 +2,8 @@ param([ValidateSet('Debug','Release')][string]$Configuration='Release')
 $ErrorActionPreference='Stop'
 $root=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $cmake=Join-Path $env:LOCALAPPDATA 'Programs/CLion/bin/cmake/win/x64/bin/cmake.exe'
-$version='0.1.0'
+$version=(Get-Content -LiteralPath "$root/VERSION" -Raw).Trim()
+if($version -notmatch '^\d+\.\d+\.\d+$'){throw 'Invalid VERSION'}
 $folder="SignalisationFrancaiseRealiste-$version"
 $stage=Join-Path $root ('build/package-'+[guid]::NewGuid().ToString('N'))
 & $cmake --install "$root/build/$Configuration" --prefix "$stage/$folder"
