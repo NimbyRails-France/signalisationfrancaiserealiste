@@ -11,3 +11,9 @@ Thumbs.db
 
 # Isolated CI dependencies
 .ci/
+
+.release-plan.json
+
+dist/
+
+nrf-package-*/
