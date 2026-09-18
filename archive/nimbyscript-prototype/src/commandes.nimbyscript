@@ -1,0 +1,52 @@
+script meta {
+    lang: nimbyscript.v1,
+    api: nimbyrails.v1,
+}
+
+// Technical controls only; this is not a French signalling rulebook.
+pub struct CommandesSignalSFR extend Signal {
+    meta { label: "SFR - commandes de laboratoire", },
+    active: bool meta { label: "Activer les commandes", default: false, },
+    fermeture: bool meta { label: "Commander la fermeture", default: false, },
+    plafond_kmh: f64 meta {
+        label: "Plafond de vitesse en approche (km/h, 0 = inactif)",
+        default: 0.0, min: 0.0, max: 600.0,
+    },
+    distance_m: f64 meta {
+        label: "Distance d'application avant le signal (m)",
+        description: "Limite en approche seulement ; pas une zone TIV persistante après passage.",
+        default: 1000.0, min: 0.0, max: 15000.0,
+    },
+}
+
+pub fn CommandesSignalSFR::event_signal_check(
+    self: &CommandesSignalSFR, ctx: &EventCtx, train: &Train,
+    motion: &Motion, signal: &Signal, sc: &mut SimpleSimController
+): SignalCheck {
+    if self.active && self.fermeture { return SignalCheck::Stop; }
+    // Pass never overrides a native Stop or a stop requested by another script.
+    return SignalCheck::Pass;
+}
+
+pub fn CommandesSignalSFR::event_signal_lookahead(
+    self: &CommandesSignalSFR, ctx: &EventCtx, train: &Train,
+    motion: &Motion, signal: &Signal, train_distance: f64,
+    check: SignalCheck, sc: &mut SimpleSimController,
+    result: &mut SignalLookaheadResult
+) {
+    if !self.active || !is_normal(self.plafond_kmh) || self.plafond_kmh <= 0.0 { return; }
+    if !is_normal(self.distance_m) || self.distance_m <= 0.0 { return; }
+    if train_distance < 0.0 || train_distance > min(self.distance_m, 15000.0) { return; }
+    let speed_ms = min(self.plafond_kmh, 600.0) / 3.6;
+    if result.max_speed <= 0.0 { result.max_speed = speed_ms; }
+    else { result.max_speed = min(result.max_speed, speed_ms); }
+}
+
+pub fn CommandesSignalSFR::event_signal_texture_state(
+    self: &CommandesSignalSFR, db: &DB, signal: &Signal,
+    clock_us: i64, core_state: i64
+): i64 {
+    if self.active && self.fermeture { return 1; }
+    if core_state == 1 { return 1; }
+    return 0;
+}

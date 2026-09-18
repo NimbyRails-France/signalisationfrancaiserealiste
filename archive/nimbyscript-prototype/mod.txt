@@ -1,0 +1,25 @@
+[ModMeta]
+schema=1
+name=Signalisation française réaliste - laboratoire
+author=Sami
+desc=Socle expérimental : commande de fermeture, plafond de vitesse en approche et textures de diagnostic. Ne constitue pas encore un BAL français complet.
+version=0.1.0
+
+[Script]
+id=sfr_commandes_v1
+name=SFR - commandes de laboratoire
+source=src/commandes.nimbyscript
+
+[SignalTextures]
+id=sfr_diagnostic_v1
+name_en=SFR - diagnostic passage / arrêt
+name_loc=sfr_diagnostic_v1_name
+state=textures/pass.svg
+state=textures/stop.svg
+
+[SignalTemplate]
+name_en=SFR - signal de laboratoire
+name_loc=sfr_laboratory_template
+kind=path
+textures=sfr_diagnostic_v1
+extend=sfr_commandes_v1 CommandesSignalSFR

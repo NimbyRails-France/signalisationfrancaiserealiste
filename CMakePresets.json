@@ -1,0 +1,54 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "${presetName}",
+        "NimbyRailsFranceSDK_DIR": "${sourceDir}/../sdk/install/development/lib/cmake/NimbyRailsFranceSDK",
+        "CMAKE_CXX_COMPILER": "$penv{LOCALAPPDATA}/Programs/CLion/bin/mingw/bin/g++.exe",
+        "CMAKE_MAKE_PROGRAM": "$penv{LOCALAPPDATA}/Programs/CLion/bin/ninja/win/x64/ninja.exe"
+      },
+      "environment": {
+        "PATH": "$penv{LOCALAPPDATA}/Programs/CLion/bin/mingw/bin;$penv{PATH}"
+      }
+    },
+    {
+      "name": "Debug",
+      "inherits": "windows-base"
+    },
+    {
+      "name": "Release",
+      "inherits": "windows-base"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Debug",
+      "configurePreset": "Debug"
+    },
+    {
+      "name": "Release",
+      "configurePreset": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Debug",
+      "configurePreset": "Debug",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "Release",
+      "configurePreset": "Release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

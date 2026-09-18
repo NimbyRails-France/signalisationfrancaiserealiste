@@ -1,0 +1,28 @@
+[ModMeta]
+schema=1
+name=Signalisation française réaliste - textures C++
+author=Sami
+desc=Textures BAL type A pour le module C++. Aucun script.
+version=0.1.0
+
+[SignalTextures]
+id=sfr_bal_a_cpp_v1
+name_en=SFR - BAL semaphore type A (essais C++)
+name_loc=sfr_bal_a_cpp_v1_name
+state=imgs/ca/sem_bal/tex00.svg
+state=imgs/ca/sem_bal/tex01.svg
+state=imgs/ca/sem_bal/tex02.svg
+state=imgs/ca/sem_bal/tex03.svg
+state=imgs/ca/sem_bal/tex04.svg
+state=imgs/ca/sem_bal/tex05.svg
+state=imgs/ca/sem_bal/tex06.svg
+state=imgs/ca/sem_bal/tex07.svg
+state=imgs/ca/sem_bal/tex08.svg
+state=imgs/ca/sem_bal/tex10.svg
+state=imgs/ca/sem_bal/xx.svg
+
+[SignalTemplate]
+name_en=SFR - BAL type A (essais C++)
+name_loc=sfr_bal_a_cpp_v1_template
+kind=path
+textures=sfr_bal_a_cpp_v1

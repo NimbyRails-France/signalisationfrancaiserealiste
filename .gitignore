@@ -1,0 +1,10 @@
+/build/
+/captures/
+/.idea/
+/CMakeUserPresets.json
+/cmake-build-*/
+/dist/
+__pycache__/
+*.pyc
+desktop.ini
+Thumbs.db
