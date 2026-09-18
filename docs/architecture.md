@@ -2,6 +2,12 @@
 
 ## Frontières
 
+Le mod actuel est limité aux actions d'affichage et de restauration des textures.
+`src/mod.cpp` déclare ces actions ; l'adaptateur du SDK 0.7.2 fournit les exports
+et le cycle de vie de la DLL. Le Hub 0.2.3 installe le paquet et enregistre
+`SignalisationFrancaiseRealisteMod.dll` auprès de NRF Loader. Les étapes ci-dessous
+décrivent la suite envisagée, pas des règles françaises déjà implémentées.
+
 - **SDK commun** : observation native, topologie orientée, connexions d'aiguilles, états et textures. Toute correction de lecture du jeu doit y être réalisée pour tous ses consommateurs.
 - **Adaptateur** : convertir les observations en données métier, préserver les inconnues, identifier les changements de partie, invalider les données anciennes.
 - **Moteur français** : calcul indépendant de l'affichage et de la ville ; configuration des équipements et des règles par installation, avec explication de chaque décision.
@@ -10,7 +16,7 @@
 
 ## Ordre de développement proposé
 
-1. Inventaire observable et fixtures de capture. Le premier CLI fournit l'inventaire ; il reste à enregistrer la topologie, les réservations détaillées et leur chronologie pour le rejeu.
+1. Inventaire observable et fixtures de capture à produire avec les outils du SDK. Le CLI du mod a été retiré ; il reste à enregistrer la topologie, les réservations détaillées et leur chronologie pour le rejeu.
 2. Établir quelles données permettent de distinguer un chemin possible, un itinéraire demandé et un itinéraire effectivement établi. Une ligne ou une destination commerciale ne prouve pas à elle seule le chemin engagé.
 3. Définir un premier périmètre de signalisation, documenter ses règles avec des sources françaises de référence, puis construire des scénarios vérifiables avant le calcul des aspects.
 4. Ajouter les annonces, restrictions de vitesse, TIV mobiles et indicateurs de direction progressivement, en fonction des informations d'itinéraire réellement disponibles.

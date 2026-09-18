@@ -13,7 +13,7 @@ $zip=Join-Path $dist "$folder-windows-x64.zip"
 Compress-Archive -LiteralPath "$stage/$folder" -DestinationPath $zip -Force
 $project=[ordered]@{
  id='signalisationfrancaiserealiste';name='Signalisation francaise realiste';kind='native-mod';version=$version
- modId='SignalisationFrancaiseRealiste';loaderApi=1;sdkMin='0.7.1';sdkMaxExclusive='0.8.0'
+ modId='SignalisationFrancaiseRealiste';loaderApi=1;sdkMin='0.7.2';sdkMaxExclusive='0.8.0'
  module='SignalisationFrancaiseRealisteMod.dll'
  rootFolder=$folder;size=(Get-Item -LiteralPath $zip).Length
  sha256=(Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()

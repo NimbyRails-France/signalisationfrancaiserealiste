@@ -2,6 +2,7 @@
 
 Mod C++ chargé automatiquement par le NRF Loader installé avec le Hub.
 La DLL s'appelle **SignalisationFrancaiseRealisteMod.dll**.
+Cette version nécessite le **SDK 0.7.2** et le **Hub 0.2.3** pour l'installation gérée.
 
 ## Afficher une texture
 

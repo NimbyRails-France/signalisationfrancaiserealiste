@@ -20,7 +20,7 @@ Copy-Item -LiteralPath "$sdk/tools/install-proxy.ps1" -Destination "$sdkStage/lo
 $sdkZip=Join-Path $work 'sdk-local.zip'
 Compress-Archive -LiteralPath $sdkStage -DestinationPath $sdkZip
 $sdkProject=[pscustomobject]@{
- id='sdk';name='NimbyRailsFranceSDK + NRF Loader';kind='sdk';version='0.7.1';loaderApi=1
+ id='sdk';name='NimbyRailsFranceSDK + NRF Loader';kind='sdk';version='0.7.2';loaderApi=1
  rootFolder='NimbyRailsFranceSDK-local';size=(Get-Item -LiteralPath $sdkZip).Length
  sha256=(Get-FileHash -LiteralPath $sdkZip).Hash.ToLowerInvariant()
  gameSha256=@('fff49ac21720abfc824c2b4f68b862727630eb0db71cfe1f9ea8f685d0db10ae')

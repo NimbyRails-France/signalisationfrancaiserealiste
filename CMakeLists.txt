@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 project(signalisationfrancaiserealiste VERSION 0.1.0 LANGUAGES CXX)
-find_package(NimbyRailsFranceSDK 0.7.1 CONFIG REQUIRED
+find_package(NimbyRailsFranceSDK 0.7.2 CONFIG REQUIRED
   HINTS "${CMAKE_CURRENT_SOURCE_DIR}/../sdk/install/development")
 add_custom_target(sfr_test_textures ALL
   COMMAND ${CMAKE_COMMAND} -E copy_directory
